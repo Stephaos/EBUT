@@ -1,18 +1,89 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!ELEMENT Produktkatalog (Artikel+, Header)>
-<!ELEMENT Artikel (InterneArtikelnummer, ZusätzlicheArtikelnummer*, 
-	Kurzbeschreibung, Langbeschreibung, Hersteller?, (Bruttopreis|Nettopreis), 
-	Zubehörteile)>
-<!ELEMENT Header (Generierungsdatum, Erzeuger, Beschreibung?)>
-<!ELEMENT Erzeuger (Name)>
+<!ELEMENT Artikel (ZusätzlicheArtikelnummer*, Kurzbeschreibung, Langbeschreibung?, 
+		        (Bruttopreis|Nettopreis), Hersteller?, Zubehörteile)>
+	<!-- Datentyp: String, max. Länge 32-->
+	<!ATTLIST Artikel 
+		InterneArtikelnummer ID #REQUIRED
+	>
+	<!-- Datentyp: String, max. Länge 80-->
+	<!ELEMENT Kurzbeschreibung (#PCDATA)>
 
-<!ELEMENT InterneArtikelnummer (#PCDATA)>
-<!ELEMENT ZusätzlicheArtikelnummer (#PCDATA)>
-<!ELEMENT Kurzbeschreibung (#PCDATA)>
-<!ELEMENT Langbeschreibung (#PCDATA)>
-<!ELEMENT Hersteller (#PCDATA)>
-<!ELEMENT Bruttopreis (#PCDATA)>
-<!ELEMENT Nettopreis (#PCDATA)>
-<!ELEMENT Beschreibung (#PCDATA)>
-<!ELEMENT Generierungsdatum (#PCDATA)>
-<!ELEMENT Name (#PCDATA)>
+	<!ELEMENT ZusätzlicheArtikelnummer (#PCDATA)>
+		<!-- Datentyp: String, max. Länge 50-->
+		<!ATTLIST ZusätzlicheArtikelnummer
+			NummernTyp CDATA #REQUIRED
+		>
+	<!-- DatentyP. String, max. Länge 50-->
+	<!ELEMENT Langbeschreibung (#PCDATA|wichtig)*	>
+		<!ELEMENT wichtig (#PCDATA)>	
+	<!ELEMENT Bruttopreis (#PCDATA)>
+	<!ELEMENT Nettopreis (#PCDATA)>
+	<!ELEMENT Hersteller (#PCDATA)>
+	<!-- max. Länge: 64000-->
+	<!ELEMENT Zubehörteile (#PCDATA)>
+
+<!-- Header Element mit Child-Elementen -->
+<!ELEMENT Header (Generierungsdatum, Erzeuger, Beschreibung?)>
+	<!-- Datentyp: Date-->
+	<!ELEMENT Generierungsdatum (#PCDATA)>
+	<!-- Datentyp: String, max. Länge: 50-->
+	<!ELEMENT Erzeuger (#PCDATA)>
+	<!-- Datentyp: String, max. Länge: 100, OPTIONAL-->
+	<!ELEMENT Beschreibung (#PCDATA)>
+
+<!-- Header Elemente mit ATTLIST
+<!ELEMENT Header EMPTY>
+<!ATTLIST Header
+	Generierungsdatum CDATA #REQUIRED
+	Erzeuger CDATA #REQUIRED
+	Beschreibung CDATA #IMPLIED
+>
+-->
+<!ENTITY % Preis "(Betrag, Landeskuerzel, Steuersatz?)"	>
+<!ENTITY % Preisattribute "Waehrungskuerzel (EUR|USD|CHF|GBP|YEN) 'EUR'">
+<!ELEMENT Bruttopreis %Preis; >
+<!ATTLIST Bruttopreis %Preisattribute; <>
+<!ELEMENT Nettopreis %Preis; >
+<!ATTLIST Nettopreis %Preisattribute; >
+
+<Langbeschreibung>Hallo I bims de</Langbeschreibung>
+<Langbeschreibung><wichtig>Stephen</wichtig></Langbeschreibung>
+
+<!--
+Verständnisbeispiele
+
+	Syntax
+	<!ATTLIST element-name attribute-name attribute-type #REQUIRED>
+	
+	<!ELEMENT ressourcen (ressource)*>
+	<!ELEMENT ressource (#PCDATA)>
+	<!ATTLIST ressource
+	   url            CDATA #REQUIRED
+	   sprache        CDATA #IMPLIED
+	   erfasst        CDATA #REQUIRED
+	   geaendert      CDATA #IMPLIED
+	>
+	<ressource url="www.stephens-blog.de" sprache="de" ...>Stephens Blog</ressource>
+	
+	
+	<!ELEMENT autos (auto)*>
+	<!ELEMENT auto EMPTY>
+	<!ATTLIST auto
+	   typ CDATA #REQUIRED
+	   bj  CDATA #REQUIRED
+	   km  CDATA #REQUIRED
+	   ps  CDATA #REQUIRED
+	   vb  CDATA #REQUIRED
+	>
+	
+	<!ELEMENT hotels (hotel)*>
+	<!ELEMENT hotel (#PCDATA)>
+	<!ATTLIST hotel
+	   name            CDATA               #REQUIRED
+	   klasse          (I|II|III|IV|V)     #REQUIRED
+	   einzelzimmer    (ja|nein)           #IMPLIED
+	   doppelzimmer    (ja|nein) "ja"
+	>
+-->
+Langbeschreibung
