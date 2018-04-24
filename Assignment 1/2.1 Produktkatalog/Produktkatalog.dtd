@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!ELEMENT Produktkatalog (Artikel+, Header)>
+<!ELEMENT Artikel (InterneArtikelnummer, ZusätzlicheArtikelnummer*, 
+	Kurzbeschreibung, Langbeschreibung, Hersteller?, (Bruttopreis|Nettopreis), 
+	Zubehörteile)>
+<!ELEMENT Header (Generierungsdatum, Erzeuger, Beschreibung?)>
+<!ELEMENT Erzeuger (Name)>
+
+<!ELEMENT InterneArtikelnummer (#PCDATA)>
+<!ELEMENT ZusätzlicheArtikelnummer (#PCDATA)>
+<!ELEMENT Kurzbeschreibung (#PCDATA)>
+<!ELEMENT Langbeschreibung (#PCDATA)>
+<!ELEMENT Hersteller (#PCDATA)>
+<!ELEMENT Bruttopreis (#PCDATA)>
+<!ELEMENT Nettopreis (#PCDATA)>
+<!ELEMENT Beschreibung (#PCDATA)>
+<!ELEMENT Generierungsdatum (#PCDATA)>
+<!ELEMENT Name (#PCDATA)>
