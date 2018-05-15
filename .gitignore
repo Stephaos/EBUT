@@ -1,5 +1,5 @@
 #WholesalerDemo
-*/Assignment3/WholesalerWebDemo/WebContent/WEB-INF/classes/*
+*.class
 
 # Eclipse
 .classpath
