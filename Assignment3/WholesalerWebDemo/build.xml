@@ -4,14 +4,14 @@
 	<!-- Project Properties                                                  -->
 	<!-- =================================================================== -->
 	<property name="project" value="eBus-Framework-Demo-WTP" />
-	<property name="src.dir" value="${basedir}/src" />
-	<property name="res.dir" value="${basedir}/resources" />
-	<property name="javadoc.dir" value="${basedir}/javadoc/api" />
-	<property name="webinf.dir" value="${basedir}/WebContent/WEB-INF" />
-	<property name="wsdl.dir" value="${basedir}/WebContent/wsdl" />
-	<property name="classes.dir" value="${webinf.dir}/classes" />
-	<property name="lib.home" value="${webinf.dir}/lib" />
-	<property name="install.dir" value="${basedir}/install" />
+	<property name="src.dir" value="${basedir}\src" />
+	<property name="res.dir" value="${basedir}\resources" />
+	<property name="javadoc.dir" value="${basedir}\javadoc\api" />
+	<property name="webinf.dir" value="${basedir}\WebContent\WEB-INF" />
+	<property name="wsdl.dir" value="${basedir}\WebContent\wsdl" />
+	<property name="classes.dir" value="${webinf.dir}\classes" />
+	<property name="lib.home" value="${webinf.dir}\lib" />
+	<property name="install.dir" value="${basedir}\install" />
 	<property name="db.name" value="ebus" />
 	<property name="db.user" value="manager" />
 	<property name="db.password" value="manager" />
@@ -27,15 +27,15 @@
 				 version="true" 
 				 use="true" 
 				 windowtitle="eBus-Framework API" 
-			 	 stylesheetfile="${javadoc.dir}/javadoc-stylesheet.css"
-				 classpath="${lib.home}/EBUS-Framework-2-1.1.0.jar;
-							${lib.home}/servlet-api.jar;
-							${lib.home}/commons-fileupload-1.3.1.jar;
-							${lib.home}/commons-io-2.4.jar"
+			 	 stylesheetfile="${javadoc.dir}\javadoc-stylesheet.css"
+				 classpath="${lib.home}\EBUS-Framework-2-1.1.0.jar;
+							${lib.home}\servlet-api.jar;
+							${lib.home}\commons-fileupload-1.3.1.jar;
+							${lib.home}\commons-io-2.4.jar"
 				 additionalparam="-Xdoclint:none">
 
 			<packageset dir="${src.dir}" defaultexcludes="yes">
-				<include name="de/htwg_konstanz/ebus/wholesaler/**" />
+				<include name="de\htwg_konstanz\ebus\wholesaler\**" />
 			</packageset>
 
 			<group title="Demo Packages" packages="de.htwg_konstanz.ebus.wholesaler.demo*" />
@@ -52,27 +52,27 @@
 
 			<taskdef name="wsimport" classname="com.sun.tools.ws.ant.WsImport">
 				<classpath>
-				        <pathelement location="${lib.home}/jaxws-tools.jar"/>
-				  </classpath>
+				 	<pathelement location="${lib.home}\jaxws-tools.jar"/>
+				 </classpath>
 			</taskdef>
 
 			<target name="wsimport-ProductCatalogService">
-				<wsimport debug="true" verbose="true" destdir="${classes.dir}" sourcedestdir="${basedir}/src" wsdl="${wsdl.dir}/ProductCatalogService.wsdl" package="de.htwg_konstanz.ebus.ess.ws.catalog">
+				<wsimport debug="true" verbose="true" destdir="${classes.dir}" sourcedestdir="${basedir}\src" wsdl="${wsdl.dir}\ProductCatalogService.wsdl" package="de.htwg_konstanz.ebus.ess.ws.catalog">
 				</wsimport>
 			</target>
 
 			<target name="wsimport-OrderService">
-				<wsimport debug="true" verbose="true" destdir="${classes.dir}" sourcedestdir="${basedir}/src" wsdl="${wsdl.dir}/OrderService.wsdl" package="de.htwg_konstanz.ebus.ess.ws.order">
+				<wsimport debug="true" verbose="true" destdir="${classes.dir}" sourcedestdir="${basedir}\src" wsdl="${wsdl.dir}\OrderService.wsdl" package="de.htwg_konstanz.ebus.ess.ws.order">
 				</wsimport>
 			</target>
 
 			<target name="wsimport-DeliveryService">
-				<wsimport debug="true" verbose="true" destdir="${classes.dir}" sourcedestdir="${basedir}/src" wsdl="${wsdl.dir}/DeliveryService.wsdl" package="de.htwg_konstanz.ebus.ess.ws.delivery">
+				<wsimport debug="true" verbose="true" destdir="${classes.dir}" sourcedestdir="${basedir}\src" wsdl="${wsdl.dir}\DeliveryService.wsdl" package="de.htwg_konstanz.ebus.ess.ws.delivery">
 				</wsimport>
 			</target>
 
 			<target name="wsimport-InvoiceService">
-				<wsimport debug="true" verbose="true" destdir="${classes.dir}" sourcedestdir="${basedir}/src" wsdl="${wsdl.dir}/InvoiceService.wsdl" package="de.htwg_konstanz.ebus.ess.ws.invoice">
+				<wsimport debug="true" verbose="true" destdir="${classes.dir}" sourcedestdir="${basedir}\src" wsdl="${wsdl.dir}\InvoiceService.wsdl" package="de.htwg_konstanz.ebus.ess.ws.invoice">
 				</wsimport>
 			</target>
 	
