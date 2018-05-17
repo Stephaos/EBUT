@@ -1,5 +1,5 @@
-#WholesalerDemo
-*.class
+**/*.class
+**.class
 
 # Eclipse
 .classpath
