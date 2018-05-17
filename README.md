@@ -1,3 +1,3 @@
 # EBUT
 
-Assignment Repo for Ebusiness-Technologien (Wäsch)
+Assignment Repo for E-Business Technologien (Wäsch)
