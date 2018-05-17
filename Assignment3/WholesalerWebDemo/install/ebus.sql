@@ -40,18 +40,18 @@ CREATE TABLE IF NOT EXISTS `address` (
 # Dumping data for table ebus.address: ~12 rows (approximately)
 /*!40000 ALTER TABLE `address` DISABLE KEYS */;
 INSERT INTO `address` (`id`, `street`, `zipcode`, `city`, `country`) VALUES
-	('10', 'Brauneggerstr. 55', '78462', 'Konstanz', 'DE'),
-	('100', 'Brauneggerstr. 55', '78462', 'Konstanz', 'DE'),
-	('110', 'Brauneggerstr. 55', '78462', 'Konstanz', 'DE'),
+	('10', 'Alfred-Wachtel-Straße 8', '78462', 'Konstanz', 'DE'),
+	('100', 'Alfred-Wachtel-Straße 8', '78462', 'Konstanz', 'DE'),
+	('110', 'Alfred-Wachtel-Straße 8', '78462', 'Konstanz', 'DE'),
 	('1296528656680', 'TestUserCustomerStreet', '123456', 'TestUserCustomerStreetCity', 'DE'),
-	('20', 'Brauneggerstr. 55', '78462', 'Konstanz', 'DE'),
-	('30', 'Brauneggerstr. 55', '78462', 'Konstanz', 'DE'),
-	('40', 'Brauneggerstr. 55', '78462', 'Konstanz', 'DE'),
-	('50', 'Brauneggerstr. 55', '78462', 'Konstanz', 'DE'),
-	('60', 'Brauneggerstr. 55', '78462', 'Konstanz', 'DE'),
-	('70', 'Brauneggerstr. 55', '78462', 'Konstanz', 'DE'),
-	('80', 'Brauneggerstr. 55', '78462', 'Konstanz', 'DE'),
-	('90', 'Brauneggerstr. 55', '78462', 'Konstanz', 'DE');
+	('20', 'Alfred-Wachtel-Straße 8', '78462', 'Konstanz', 'DE'),
+	('30', 'Alfred-Wachtel-Straße 8', '78462', 'Konstanz', 'DE'),
+	('40', 'Alfred-Wachtel-Straße 8', '78462', 'Konstanz', 'DE'),
+	('50', 'Alfred-Wachtel-Straße 8', '78462', 'Konstanz', 'DE'),
+	('60', 'Alfred-Wachtel-Straße 8', '78462', 'Konstanz', 'DE'),
+	('70', 'Alfred-Wachtel-Straße 8', '78462', 'Konstanz', 'DE'),
+	('80', 'Alfred-Wachtel-Straße 8', '78462', 'Konstanz', 'DE'),
+	('90', 'Alfred-Wachtel-Straße 8', '78462', 'Konstanz', 'DE');
 /*!40000 ALTER TABLE `address` ENABLE KEYS */;
 
 
