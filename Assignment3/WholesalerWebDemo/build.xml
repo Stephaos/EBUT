@@ -92,8 +92,11 @@
 	    </condition>
 	      
 	    <fail if="do.abort">Build aborted by user.</fail>
-
+		
+	  	<!--
 	    <exec dir="${install.dir}" executable="${install.dir}/createdb.bat">
+	    -->
+	    <exec dir="${install.dir}" executable="${install.dir}/createdb.sh">
 	      <arg line="${db.name} ${db.user} ${db.password}"/>
 	    </exec> 
 	  </target>
