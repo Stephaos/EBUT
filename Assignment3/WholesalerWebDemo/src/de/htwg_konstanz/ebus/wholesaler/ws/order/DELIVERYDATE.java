@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
 /**
- * LÖSCHEN
+ * LÃ–SCHEN
  * 
  * <p>Java class for DELIVERY_DATE element declaration.
  * 

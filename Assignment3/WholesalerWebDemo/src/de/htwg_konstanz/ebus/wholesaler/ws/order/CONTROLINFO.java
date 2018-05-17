@@ -74,7 +74,7 @@ public class CONTROLINFO {
     }
 
     /**
-     * vom ePS zu generieren: eindeutiger String für Einkäufer, z.B. "E-Procurement System Einkäufer-ID"
+     * vom ePS zu generieren: eindeutiger String fÃ¼r EinkÃ¤ufer, z.B. "E-Procurement System EinkÃ¤ufer-ID"
      * 
      * @return
      *     possible object is
@@ -86,7 +86,7 @@ public class CONTROLINFO {
     }
 
     /**
-     * vom ePS zu generieren: eindeutiger String für Einkäufer, z.B. "E-Procurement System Einkäufer-ID"
+     * vom ePS zu generieren: eindeutiger String fÃ¼r EinkÃ¤ufer, z.B. "E-Procurement System EinkÃ¤ufer-ID"
      * 
      * @param value
      *     allowed object is
@@ -98,7 +98,7 @@ public class CONTROLINFO {
     }
 
     /**
-     * vom ePS zu generieren: Timestamp (dtDATETIME) für XML-Bestelldokument
+     * vom ePS zu generieren: Timestamp (dtDATETIME) fÃ¼r XML-Bestelldokument
      * 
      * @return
      *     possible object is
@@ -110,7 +110,7 @@ public class CONTROLINFO {
     }
 
     /**
-     * vom ePS zu generieren: Timestamp (dtDATETIME) für XML-Bestelldokument
+     * vom ePS zu generieren: Timestamp (dtDATETIME) fÃ¼r XML-Bestelldokument
      * 
      * @param value
      *     allowed object is

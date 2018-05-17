@@ -124,12 +124,12 @@ public class PurchaseOrderAction implements IAction
 					String msg = null;
 					if(boOrderPurchase.getRejected())
 					{
-						msg = "<p>Die Bestellung wurde zwar erfolgreich versendet, aber vom Lieferanten abgelehnt, weil mindestens eins der bestellten Produkte nicht (mehr) verfügbar ist.<br>";
+						msg = "<p>Die Bestellung wurde zwar erfolgreich versendet, aber vom Lieferanten abgelehnt, weil mindestens eins der bestellten Produkte nicht (mehr) verfÃ¼gbar ist.<br>";
 						msg += "OrderNumber: " + boOrderPurchase.getOrderNumber() + "<br>Supplier: " + boOrderPurchase.getSupplier().getCompanyname() + "</p>";
 					}
 					else
 					{
-						msg = "<p>Die Bestellung wurde erfolgreich versendet und vom Lieferanten bestätigt.<br>";
+						msg = "<p>Die Bestellung wurde erfolgreich versendet und vom Lieferanten bestÃ¤tigt.<br>";
 						msg += "OrderNumber: " + boOrderPurchase.getOrderNumber() + "<br>Supplier: " + boOrderPurchase.getSupplier().getCompanyname() + "</p>";
 					}
 						

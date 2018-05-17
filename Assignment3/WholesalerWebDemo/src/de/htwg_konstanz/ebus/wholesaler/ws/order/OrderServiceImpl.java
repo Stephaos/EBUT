@@ -109,10 +109,10 @@ public class OrderServiceImpl
          if(boCurrency != null)
          { 
         	if(!boCurrency.getCode().equalsIgnoreCase("EUR"))
-        		throw new OrderServiceFault("Die angegebene Währung wird nicht unterstützt! Dieses System unterstützt derzeit nur EUR als Währung!", boCurrency.getCode());
+        		throw new OrderServiceFault("Die angegebene WÃ¤hrung wird nicht unterstÃ¼tzt! Dieses System unterstÃ¼tzt derzeit nur EUR als WÃ¤hrung!", boCurrency.getCode());
          }
          else
-       		throw new OrderServiceFault("Es wurde keine bzw. eine ungültige Währung angegeben!", "");
+       		throw new OrderServiceFault("Es wurde keine bzw. eine ungÃ¼ltige WÃ¤hrung angegeben!", "");
         	 
          boOrderCustomer.setCurrency(boCurrency);
          boOrderCustomer.setCustomer(boCustomer);
@@ -201,7 +201,7 @@ public class OrderServiceImpl
             	remark.setValue("Produkt nicht gefunden!");
             	orderResponseItem.getREMARK().add(remark);
 
-            	throw new OrderServiceFault("Die Bestellung kann nicht ausgeführt werden! Das Produkt ist nicht vorhanden: " + orderItem.getARTICLEID().getSUPPLIERAID(), "Die Bestellung kann nicht ausgeführt werden!");
+            	throw new OrderServiceFault("Die Bestellung kann nicht ausgefÃ¼hrt werden! Das Produkt ist nicht vorhanden: " + orderItem.getARTICLEID().getSUPPLIERAID(), "Die Bestellung kann nicht ausgefÃ¼hrt werden!");
             }
             
             orderResponseItemList.getORDERRESPONSEITEM().add(orderResponseItem);
@@ -251,37 +251,37 @@ public class OrderServiceImpl
       {
          e.printStackTrace();
          _BaseBOA.getInstance().rollback();
-         throw new OrderServiceFault("Die Bestellung kann nicht ausgeführt werden!" , e.getMessage());
+         throw new OrderServiceFault("Die Bestellung kann nicht ausgefÃ¼hrt werden!" , e.getMessage());
       } 
       catch (MalformedURLException e)
       {
           e.printStackTrace();
           _BaseBOA.getInstance().rollback();
-          throw new OrderServiceFault("Die Bestellung kann nicht ausgeführt werden!" , e.getMessage());
+          throw new OrderServiceFault("Die Bestellung kann nicht ausgefÃ¼hrt werden!" , e.getMessage());
       } 
       catch (PropertyException e)
       {
           e.printStackTrace();
           _BaseBOA.getInstance().rollback();
-          throw new OrderServiceFault("Die Bestellung kann nicht ausgeführt werden!" , e.getMessage());
+          throw new OrderServiceFault("Die Bestellung kann nicht ausgefÃ¼hrt werden!" , e.getMessage());
       } 
       catch (IOException e)
       {
           e.printStackTrace();
           _BaseBOA.getInstance().rollback();
-          throw new OrderServiceFault("Die Bestellung kann nicht ausgeführt werden!" , e.getMessage());
+          throw new OrderServiceFault("Die Bestellung kann nicht ausgefÃ¼hrt werden!" , e.getMessage());
       } 
       catch (SAXException e)
       {
           e.printStackTrace();
           _BaseBOA.getInstance().rollback();
-          throw new OrderServiceFault("Die Bestellung kann nicht ausgeführt werden!" , e.getMessage());
+          throw new OrderServiceFault("Die Bestellung kann nicht ausgefÃ¼hrt werden!" , e.getMessage());
       } 
       catch (JAXBException e)
       {
           e.printStackTrace();
           _BaseBOA.getInstance().rollback();
-          throw new OrderServiceFault("Die Bestellung kann nicht ausgeführt werden!" , e.getMessage());
+          throw new OrderServiceFault("Die Bestellung kann nicht ausgefÃ¼hrt werden!" , e.getMessage());
       }
       
       return res;      
