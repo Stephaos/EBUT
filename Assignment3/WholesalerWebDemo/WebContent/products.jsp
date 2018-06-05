@@ -11,23 +11,27 @@
 
 <script type="text/javascript">
 function showImportElement() {
-    var v_upload = document.getElementById("import");
+    var v_import = document.getElementById("import");
     var v_export = document.getElementById("export");
 	
-    if (v_upload.style.display = "none") {
-		v_upload.style.display = "block";
+    if (v_import.style.display === "none") {
+    	v_import.style.display = "block";
 		v_export.style.display = "none";
+	} else {
+		v_import.style.display = "none";		
 	}
 }
 
 function showExportElement() {
-    var v_upload = document.getElementById("import");
+    var v_import = document.getElementById("import");
     var v_export = document.getElementById("export");
 	
-    if (v_export.style.display = "none") {
+    if (v_export.style.display === "none") {
 		v_export.style.display = "block";
-		v_upload.style.display = "none";
-	} 
+		v_import.style.display = "none";
+	} else {
+		v_export.style.display = "none";		
+	}
 }
 
 </script>
@@ -47,7 +51,7 @@ function showExportElement() {
 	<input TYPE="BUTTON" VALUE="Export Data" ONCLICK="showExportElement()">
 </form>
 
-<form id="import" name="upload" method="POST" style="display: none" enctype="multipart/form-data" action="">
+<form id="import" name="import" method="POST" style="display: none" enctype="multipart/form-data" action="">
 	File to import:	<input type="file" name="upfile"><br/>
 	<input type="submit" value="Import it!">
 </form>
