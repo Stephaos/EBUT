@@ -10,8 +10,8 @@
 <link rel="stylesheet" type="text/css" href="default.css">
 
 <script type="text/javascript">
-function showUploadElement() {
-    var v_upload = document.getElementById("upload");
+function showImportElement() {
+    var v_upload = document.getElementById("import");
     var v_export = document.getElementById("export");
 	
     if (v_upload.style.display = "none") {
@@ -21,7 +21,7 @@ function showUploadElement() {
 }
 
 function showExportElement() {
-    var v_upload = document.getElementById("upload");
+    var v_upload = document.getElementById("import");
     var v_export = document.getElementById("export");
 	
     if (v_export.style.display = "none") {
@@ -43,13 +43,13 @@ function showExportElement() {
 
 <label>What do you want to do?</label>
 <form NAME="form1" METHOD="POST">
-	<input TYPE="BUTTON" VALUE="Upload Data" ONCLICK="showUploadElement()">
+	<input TYPE="BUTTON" VALUE="Import Data" ONCLICK="showImportElement()">
 	<input TYPE="BUTTON" VALUE="Export Data" ONCLICK="showExportElement()">
 </form>
 
-<form id="upload" name="upload" method="POST" style="display: none" enctype="multipart/form-data" action="">
-	File to upload:	<input type="file" name="upfile"><br/>
-	<input type="submit" value="Upload it!">
+<form id="import" name="upload" method="POST" style="display: none" enctype="multipart/form-data" action="">
+	File to import:	<input type="file" name="upfile"><br/>
+	<input type="submit" value="Import it!">
 </form>
 
 <input id="export" type="BUTTON" value="Export Data!" style="display: none" onclick="exportData()">
