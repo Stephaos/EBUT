@@ -1,12 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<select id="format" style="display: none">
+	<option value="XHTML">Simple XHTML</option>
+	<option value="XML">Simple BMECat </option>
+</select>
 
-</body>
-</html>
+<select id="version" style="display: none">
+	<option>Whole Catalogue</option>
+	<option>Matching Short Description</option>	
+</select>
+
+<input id="export" type="BUTTON" value="Export Data!" style="display: none" onclick="exportData()">

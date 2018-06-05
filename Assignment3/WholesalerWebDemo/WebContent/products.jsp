@@ -10,30 +10,39 @@
 <link rel="stylesheet" type="text/css" href="default.css">
 
 <script type="text/javascript">
-function showImportElement() {
-    var v_import = document.getElementById("import");
-    var v_export = document.getElementById("export");
-	
-    if (v_import.style.display === "none") {
-    	v_import.style.display = "block";
-		v_export.style.display = "none";
-	} else {
-		v_import.style.display = "none";		
+	function showImportElement() {
+	    var v_import = document.getElementById("import");
+	    var v_export = document.getElementById("export");
+	    var v_version = document.getElementById("version");
+	    var v_format = document.getElementById("format");
+		
+	    if (v_import.style.display === "none") {
+	    	v_import.style.display = "block";
+			v_export.style.display = "none";
+			v_version.style.display = "none";
+			v_format.style.display = "none";
+		} else {
+			v_import.style.display = "none";		
+		}
 	}
-}
-
-function showExportElement() {
-    var v_import = document.getElementById("import");
-    var v_export = document.getElementById("export");
 	
-    if (v_export.style.display === "none") {
-		v_export.style.display = "block";
-		v_import.style.display = "none";
-	} else {
-		v_export.style.display = "none";		
+	function showExportElement() {
+	    var v_import = document.getElementById("import");
+	    var v_export = document.getElementById("export");
+	    var v_version = document.getElementById("version");
+	    var v_format = document.getElementById("format");
+		
+	    if (v_export.style.display === "none") {
+			v_export.style.display = "block";
+			v_version.style.display = "block";
+			v_format.style.display = "block";
+			v_import.style.display = "none";
+		} else {
+			v_export.style.display = "none";		
+			v_version.style.display = "none";		
+			v_format.style.display = "none";		
+		}
 	}
-}
-
 </script>
 </head>
 
@@ -44,20 +53,30 @@ function showExportElement() {
 <%@ include file="authentication.jsp" %>
 <%@ include file="navigation.jspfragment" %>
 
+<% 
+   if(loginBean != null && loginBean.isLoggedIn() && loginBean.getRole() == Constants.USER_INTERNAL)
+   {	
+%>
+	<label>What do you want to do?</label>
+	<form NAME="form1" METHOD="POST">
+		<input TYPE="BUTTON" VALUE="Import Data" ONCLICK="showImportElement()">
+		<input TYPE="BUTTON" VALUE="Export Data" ONCLICK="showExportElement()">
+	</form>
+	
+	<%@ include file="import.jsp" %>
+	<%@ include file="export.jsp" %>
+	<br/>
+<%
+   }
+   else
+   {
+%> 	      
+    <jsp:forward page="login.jsp"></jsp:forward>
+<%
+   }
+%>	
 
-<label>What do you want to do?</label>
-<form NAME="form1" METHOD="POST">
-	<input TYPE="BUTTON" VALUE="Import Data" ONCLICK="showImportElement()">
-	<input TYPE="BUTTON" VALUE="Export Data" ONCLICK="showExportElement()">
-</form>
 
-<form id="import" name="import" method="POST" style="display: none" enctype="multipart/form-data" action="">
-	File to import:	<input type="file" name="upfile"><br/>
-	<input type="submit" value="Import it!">
-</form>
-
-<input id="export" type="BUTTON" value="Export Data!" style="display: none" onclick="exportData()">
-<br/>
 <h1>Product Catalog</h1>
 
 <table class="dataTable">
