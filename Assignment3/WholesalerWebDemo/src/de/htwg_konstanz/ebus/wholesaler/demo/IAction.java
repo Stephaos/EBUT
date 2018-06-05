@@ -46,7 +46,7 @@ public interface IAction
    public String execute(HttpServletRequest request, HttpServletResponse response, ArrayList<String> errorList);
 
    /**
-   * Each action itself decides if it is responsible to process the corrensponding request or not.
+   * Each action itself decides if it is responsible to process the corresponding request or not.
    * This means that the {@link ControllerServlet} will ask each action by calling this method if it
    * is able to process the incoming action request, or not.
    * 
