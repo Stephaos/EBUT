@@ -8,6 +8,29 @@
 <meta http-equiv="cache-control" content="no-cache">
 <meta http-equiv="pragma" content="no-cache">
 <link rel="stylesheet" type="text/css" href="default.css">
+
+<script type="text/javascript">
+function showUploadElement() {
+    var v_upload = document.getElementById("upload");
+    var v_export = document.getElementById("export");
+	
+    if (v_upload.style.display = "none") {
+		v_upload.style.display = "block";
+		v_export.style.display = "none";
+	}
+}
+
+function showExportElement() {
+    var v_upload = document.getElementById("upload");
+    var v_export = document.getElementById("export");
+	
+    if (v_export.style.display = "none") {
+		v_export.style.display = "block";
+		v_upload.style.display = "none";
+	} 
+}
+
+</script>
 </head>
 
 <body>
@@ -16,6 +39,20 @@
 <%@ include file="error.jsp" %>
 <%@ include file="authentication.jsp" %>
 <%@ include file="navigation.jspfragment" %>
+
+
+<label>What do you want to do?</label>
+<form NAME="form1" METHOD="POST">
+	<input TYPE="BUTTON" VALUE="Upload" ONCLICK="showUploadElement()">
+	<input TYPE="BUTTON" VALUE="Export" ONCLICK="showExportElement()">
+</form>
+
+<form id="upload" name="upload" method="POST" enctype="multipart/form-data" action="fup.cgi" style="display: none">
+	File to upload:	<input type="file" name="upfile"><br/>
+	<input type="submit" value="Upload it!">
+</form>
+
+<input id="export" TYPE="BUTTON" VALUE="Export Data!" ONCLICK="exportData()" style="display: none">
 
 <h1>Product Catalog</h1>
 
