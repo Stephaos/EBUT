@@ -101,8 +101,8 @@ public class ControllerServlet extends HttpServlet
 	/** 
 	* Process the HTTP Get and Post-/Request. 
 	* This method is the main entry point of the application. It processes both types of http requests (get and post).
-	* First of all the method ensures that the incoming request ist valid. This is done by inspecting the request
-	* parameter "action" which contains the name of the corresponding action to be called. If there is no "ation"
+	* First of all the method ensures that the incoming request is valid. This is done by inspecting the request
+	* parameter "action" which contains the name of the corresponding action to be called. If there is no "action"
 	* parameter set, the request is invalid and a error message is shown. If the action parameter for example
 	* contains "login" the corresponding code segment which represents the login action is executed (see section 
 	* "test if login action was called").
