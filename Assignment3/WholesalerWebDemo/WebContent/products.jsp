@@ -43,17 +43,17 @@ function showExportElement() {
 
 <label>What do you want to do?</label>
 <form NAME="form1" METHOD="POST">
-	<input TYPE="BUTTON" VALUE="Upload" ONCLICK="showUploadElement()">
-	<input TYPE="BUTTON" VALUE="Export" ONCLICK="showExportElement()">
+	<input TYPE="BUTTON" VALUE="Upload Data" ONCLICK="showUploadElement()">
+	<input TYPE="BUTTON" VALUE="Export Data" ONCLICK="showExportElement()">
 </form>
 
-<form id="upload" name="upload" method="POST" enctype="multipart/form-data" action="fup.cgi" style="display: none">
+<form id="upload" name="upload" method="POST" style="display: none" enctype="multipart/form-data" action="">
 	File to upload:	<input type="file" name="upfile"><br/>
 	<input type="submit" value="Upload it!">
 </form>
 
-<input id="export" TYPE="BUTTON" VALUE="Export Data!" ONCLICK="exportData()" style="display: none">
-
+<input id="export" type="BUTTON" value="Export Data!" style="display: none" onclick="exportData()">
+<br/>
 <h1>Product Catalog</h1>
 
 <table class="dataTable">
