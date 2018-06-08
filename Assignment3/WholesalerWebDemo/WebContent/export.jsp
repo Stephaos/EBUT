@@ -6,10 +6,11 @@
 <form name="xmlExportForm" method="post"
 	action="<%=response.encodeURL("controllerservlet?action=" + Constants.ACTION_EXPORT)%>">
 
-	<select id="format" style="display: none">
+	<select id="format" name="format" style="display: none">
 		<option value="XHTML">Simple XHTML</option>
 		<option value="XML">Simple BMECat</option>
-	</select> <select id="version" style="display: none">
+	</select> 
+	<select id="version" name="version" style="display: none">
 		<option>Whole Catalogue</option>
 		<option>Matching Short Description</option>
 	</select>
