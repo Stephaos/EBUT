@@ -80,36 +80,38 @@ public class ExportXML {
 //		String search = this.request.getParameter("searchTherm");
 		String exportFormat = this.request.getParameter("format");
 		String exportVersion = this.request.getParameter("version");
+		String keyword = this.request.getParameter("shortdesc");
 		String tmpPath = null;
 		String filePath = null;
 		
 
 		System.out.println(exportFormat);
 		System.out.println(exportVersion);
+		System.out.println(keyword);
+
+		
+		switch (exportFormat) {
+		case "XML":
+			filePath = this.writeDomIntoFile(userId, keyword);
+			break;
+		case "XHTML":
+			tmpPath = this.writeDomIntoFile(userId, keyword);
+			filePath = this.catalogToXHTML(tmpPath, userId);
+			break;
+		case "XML Download":
+			filePath = this.writeDomIntoFile(userId, keyword);
+			this.createFileForExport(filePath);
+			break;
+		case "XHTML Download":
+			tmpPath = this.writeDomIntoFile(userId, keyword);
+			filePath = this.catalogToXHTML(tmpPath, userId);
+			this.createFileForExport(filePath);
+			break;
+		default:
+			break;
+		}
 		
 		
-		
-		
-//		switch (exportType) {
-//		case "xml":
-//			filePath = this.writeDomIntoFile(userId, search);
-//			break;
-//		case "xhtml":
-//			tmpPath = this.writeDomIntoFile(userId, search);
-//			filePath = this.catalogToXHTML(tmpPath, userId);
-//			break;
-//		case "xmlDownload":
-//			filePath = this.writeDomIntoFile(userId, search);
-//			this.createFileForExport(filePath);
-//			break;
-//		case "xhtmlDownload":
-//			tmpPath = this.writeDomIntoFile(userId, search);
-//			filePath = this.catalogToXHTML(tmpPath, userId);
-//			this.createFileForExport(filePath);
-//			break;
-//		default:
-//			break;
-//		}
 		return filePath;
 	}
 

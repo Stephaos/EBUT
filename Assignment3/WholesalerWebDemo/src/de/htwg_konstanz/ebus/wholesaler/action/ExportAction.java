@@ -37,7 +37,7 @@ public class ExportAction implements IAction {
 				if (Export.getErrorList().isEmpty())
 					return pathToFile;
 				else
-					return "xmlExport.jsp";
+					return "export.jsp";
 				//----
 			} else {
 				// authorization failed -> show error message

@@ -10,6 +10,7 @@
 <link rel="stylesheet" type="text/css" href="default.css">
 
 <script type="text/javascript">
+
 	function showImportElement() {
 	    var v_import = document.getElementById("import");
 	    var v_export = document.getElementById("export");
@@ -27,10 +28,19 @@
 	}
 	
 	function showExportElement() {
+		var shortdesc = document.getElementById("shortdesc");
+		var e = document.getElementById("version");
+		var value = e.options[e.selectedIndex].text;
 	    var v_import = document.getElementById("import");
 	    var v_export = document.getElementById("export");
 	    var v_version = document.getElementById("version");
 	    var v_format = document.getElementById("format");
+	    
+		if (value != "Matching Short Description") {
+		    shortdesc.value = "";
+		    shortdesc.style.display = "none";
+		}
+
 		
 	    if (v_export.style.display === "none") {
 			v_export.style.display = "block";
@@ -43,6 +53,7 @@
 			v_format.style.display = "none";		
 		}
 	}
+	
 </script>
 </head>
 
