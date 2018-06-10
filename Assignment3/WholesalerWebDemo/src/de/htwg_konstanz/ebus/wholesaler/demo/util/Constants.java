@@ -24,8 +24,10 @@ public class Constants
 	public static final String ACTION_LOGOUT = "logout";
 	
 	public static final String ACTION_IMPORT = "import";
+	public static final String ACTION_SHOW_IMPORT = "showImport";
+	public static final String ACTION_EXPORT = "export";
+	public static final String ACTION_SHOW_EXPORT = "showExport";
 	public static final String PARAM_XML_FILE="xmlFile";
-	public static final String ACTION_EXPORT = "export";	
 
 	public static final String ACTION_READ_WS_SETTINGS = "readWsSettings";
 	public static final String ACTION_UPDATE_WS_SETTINGS = "updateWsSettings";
@@ -67,4 +69,8 @@ public class Constants
 	public static final int USER_INTERNAL = 1;
 	public static final int USER_CUSTOMER = 2;
 	public static final int USER_SUPPLIER = 3;
+	
+	public static final String XSLT_Path = "C:/Users/Steph/eclipse-workspace/EBUT/Assignment3/WholesalerWebDemo/files/ArticlesToXHTML.xslt";
+	public static final String XSD_Path =  "C:/Users/Steph/eclipse-workspace/EBUT/Assignment3/WholesalerWebDemo/files/bmecat_new_catalog_1_2_simple_without_NS.xsd";
+	
 }
