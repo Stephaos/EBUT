@@ -4,9 +4,17 @@
 	<xsl:template>
 		<html>
 			<body>
-				<h2>Jetzt haben wir ein unschönes xslt file</h2>
+				<table>
+					<th>Beispiel Tabelle</th><th>für die Daten</th>
+					<tr>
+						<td>1</td><td>2</td>
+						<td>3</td><td>4</td>
+						<td>5</td><td>6</td>
+						<td>7</td><td>8</td>
+						<td>9</td><td>10</td>
+					</tr>
+				</table>
 			</body>
 		</html>
 	</xsl:template>
-
 </xsl:stylesheet>
