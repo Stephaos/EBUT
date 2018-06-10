@@ -201,10 +201,12 @@ public class ExportXML {
 	 * @return
 	 */
 	public String catalogToXHTML(String filePath, String userId) {
-		String fileName = "Product_catalog_export_" + userId + ".XHTML";
+		String fileName = "Product_catalog_export_" + userId + ".html";
 		File file = new File(this.context.getRealPath(fileName));
 		String xmlPath = this.context.getRealPath(filePath);
 		String xsltPath = this.context.getRealPath("/wsdl/xhtml.xslt");
+		
+		System.out.println("Path: " + xsltPath);
 		
 		try {
 			TransformerFactory factory = TransformerFactory.newInstance();
@@ -224,8 +226,8 @@ public class ExportXML {
 		return fileName;
 	}
 	
-	/** Start download of the file from the filepath parameter
-	 * @param filePath of the file to downlod
+	/** Start download of the file from the file path parameter
+	 * @param filePath of the file to download
 	 */
 	public void createFileForExport(String filePath) {
 		try {
@@ -250,7 +252,7 @@ public class ExportXML {
 		}
 	}
 
-	/** Creates the rootelemets with the Header Elements in XML in bmecat style
+	/** Creates the root elements with the Header Elements in XML in bmecat style
 	 * @param doc empty doc element
 	 * @throws ParserConfigurationException
 	 */
@@ -293,7 +295,7 @@ public class ExportXML {
 
 	/** Creates for each article element an article
 	 * @param doc the actual document to edit
-	 * @param product one product out of the productlist
+	 * @param product one product out of the product list
 	 */
 	public void appendArticles(Document doc, BOProduct product) {
 		
