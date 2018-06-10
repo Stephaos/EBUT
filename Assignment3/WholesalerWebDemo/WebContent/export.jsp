@@ -19,7 +19,6 @@
 	
 	<input id="shortdesc" name="shortdesc" style="display: none"  type="text" placeholder="keyword">
 
-		
 	<input id="export" type="submit" value="Export Data!"
 		style="display: none">
 		

@@ -206,16 +206,11 @@ public class ExportXML {
 		String xmlPath = this.context.getRealPath(filePath);
 		String xsltPath = this.context.getRealPath("/wsdl/xhtml.xslt");
 		
-		System.out.println("File: " + file + " " + file.exists());
-		
 		try {
 			TransformerFactory factory = TransformerFactory.newInstance();
 			Transformer transformer;
 			StreamSource xmlSource = new StreamSource(xmlPath);
 			StreamSource xsltSource = new StreamSource(xsltPath);
-			
-			System.out.println("XSLT Source: " + xsltSource);
-			System.out.println("XML Source: " + xmlSource);
 			
 			transformer = factory.newTransformer(xsltSource);
 			transformer.transform(xmlSource, new StreamResult(file));
