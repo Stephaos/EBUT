@@ -163,11 +163,11 @@ public class ImportParser {
 //		Node node = (Node) xpath.evaluate("*/EAN", article, XPathConstants.NODE);
 		Node node = (Node) xpath.evaluate("SUPPLIER_AID", article, XPathConstants.NODE);
 		Node node2 = (Node) xpath.evaluate("*/EAN", article, XPathConstants.NODE);
-		String orderNumberSupplier = node.getFirstChild().getNodeValue();
+		String materialNumber = node.getFirstChild().getNodeValue();
 		String EAN = node2.getFirstChild().getNodeValue();
 		
 		//try to find a existing product
-		BOProduct found = ProductBOA.getInstance().findByMaterialNumber(Integer.parseInt(orderNumberSupplier));
+		BOProduct found = ProductBOA.getInstance().findByOrderNumberSupplier(EAN);
 		
 //		System.out.println("getOrderNumberSupplier: " + found.getOrderNumberSupplier());
 		
@@ -289,6 +289,7 @@ public class ImportParser {
 					PriceBOA priceInstance = PriceBOA.getInstance();
 					priceInstance.saveOrUpdatePurchasePrice(purchasePrice);
 					priceInstance.saveOrUpdateSalesPrice(sale);
+					
 				}
 	
 	
