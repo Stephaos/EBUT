@@ -149,6 +149,34 @@ public class ImportParser {
 		}
 	}
 
+//	/**
+//	 * Load or create product.
+//	 *
+//	 * @param article the article
+//	 * @param xpath the xpath
+//	 * @return the BO product
+//	 * @throws XPathExpressionException the x path expression exception
+//	 */
+//	private BOProduct loadOrCreateProduct(Node article, XPath xpath) throws XPathExpressionException{
+//
+//		//get the aid
+//		Node node = (Node) xpath.evaluate("SUPPLIER_AID", article, XPathConstants.NODE);
+//		String orderNumberSupplier = node.getFirstChild().getNodeValue();
+//		//try to find a existing product
+//		BOProduct found = ProductBOA.getInstance().findByOrderNumberSupplier(orderNumberSupplier);
+//		if(found == null){
+//			return createProduct(orderNumberSupplier);
+//		}else{
+//			if(found.getSupplier().getSupplierNumber().equals(supplier.getSupplierNumber())){
+//				this.notImportedArticles ++;
+//				return null;				
+//			} else {
+//				return createProduct(orderNumberSupplier);
+//			}
+//		}
+//	}
+	
+	
 	/**
 	 * Load or create product.
 	 *
