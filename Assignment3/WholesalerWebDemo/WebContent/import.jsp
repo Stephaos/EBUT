@@ -5,5 +5,5 @@
 	action="<%=response.encodeURL("controllerservlet?action=" + Constants.ACTION_IMPORT)%>"
 	enctype="multipart/form-data">
 	File to import: <input type="file" name="upfile" required><br /> <input
-		type="submit" value="Import it!">
+		type="submit" class="btn btn-success" value="Import it!" style="margin-top: 15px;">
 </form>

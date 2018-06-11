@@ -10,17 +10,16 @@
 		<option value="XHTML Download">XHTML Download</option>
 		<option value="XML Download">XML Download</option>
 	</select> 
-	<select id="version" name="version" style="display: none" onchange="toggleShortDesc()">
+	<select id="version" name="version" style="display: none; margin-top:5px;" onchange="toggleShortDesc()">
 		<option>Whole Catalogue</option>
 		<option>Matching Short Description</option>
 	</select>
 	
 	<input id="shortdesc" name="shortdesc" style="display: none"  type="text" placeholder="keyword">
 
-	<input id="export" type="submit" value="Export Data!"
-		style="display: none">
+	<input id="export" class="btn btn-success" type="submit" value="Export Data!"
+		style="display: none; margin-top: 15px;">
 		
-
 </form>
 
 <script>

@@ -8,6 +8,7 @@
 <meta http-equiv="cache-control" content="no-cache">
 <meta http-equiv="pragma" content="no-cache">
 <link rel="stylesheet" type="text/css" href="default.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 <script type="text/javascript">
 
@@ -68,15 +69,17 @@
    if(loginBean != null && loginBean.isLoggedIn() && loginBean.getRole() == Constants.USER_INTERNAL)
    {	
 %>
-	<label>What do you want to do?</label>
+<div style="padding-left: 10px;">
+<label>What do you want to do?</label>
 	<form NAME="form1" METHOD="POST">
-		<input TYPE="BUTTON" VALUE="Import Data" ONCLICK="showImportElement()">
-		<input TYPE="BUTTON" VALUE="Export Data" ONCLICK="showExportElement()">
+		<input class="btn" TYPE="BUTTON" VALUE="Import Data" ONCLICK="showImportElement()">
+		<input class="btn" TYPE="BUTTON" VALUE="Export Data" ONCLICK="showExportElement()">
 	</form>
 	
 	<%@ include file="import.jsp" %>
 	<%@ include file="export.jsp" %>
-	<br/>
+</div>
+</br>
 <%
    }
    else
