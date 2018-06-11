@@ -24,9 +24,7 @@ public class Constants
 	public static final String ACTION_LOGOUT = "logout";
 	
 	public static final String ACTION_IMPORT = "import";
-	public static final String ACTION_SHOW_IMPORT = "showImport";
 	public static final String ACTION_EXPORT = "export";
-	public static final String ACTION_SHOW_EXPORT = "showExport";
 	public static final String PARAM_XML_FILE="xmlFile";
 
 	public static final String ACTION_READ_WS_SETTINGS = "readWsSettings";
