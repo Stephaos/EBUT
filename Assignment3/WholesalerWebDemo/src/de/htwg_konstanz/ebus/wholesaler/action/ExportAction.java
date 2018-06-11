@@ -44,7 +44,6 @@ public class ExportAction implements IAction {
 			case "XML":
 				result = transformer.toXML(document);
 				 invoke(request, response, result);
-				 
 				break;
 			case "XHTML":
 				 result = transformer.toXHTML(document);
