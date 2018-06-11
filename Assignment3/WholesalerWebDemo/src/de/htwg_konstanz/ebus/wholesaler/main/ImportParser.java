@@ -160,22 +160,33 @@ public class ImportParser {
 	private BOProduct loadOrCreateProduct(Node article, XPath xpath) throws XPathExpressionException{
 
 		//get the aid
-		Node node = (Node) xpath.evaluate("*/EAN", article, XPathConstants.NODE);
+//		Node node = (Node) xpath.evaluate("*/EAN", article, XPathConstants.NODE);
+		Node node = (Node) xpath.evaluate("SUPPLIER_AID", article, XPathConstants.NODE);
+		Node node2 = (Node) xpath.evaluate("*/EAN", article, XPathConstants.NODE);
 		String orderNumberSupplier = node.getFirstChild().getNodeValue();
+		String EAN = node2.getFirstChild().getNodeValue();
+		
 		//try to find a existing product
-		BOProduct found = ProductBOA.getInstance().findByOrderNumberSupplier(orderNumberSupplier);
+		BOProduct found = ProductBOA.getInstance().findByMaterialNumber(Integer.parseInt(orderNumberSupplier));
 		
 //		System.out.println("getOrderNumberSupplier: " + found.getOrderNumberSupplier());
 		
-		
+//		System.out.println("EAN 1 " + found.getOrderNumberSupplier());
+//		System.out.println("EAN 2 " + EAN);
+//		
 		if(found == null){
-			return createProduct(orderNumberSupplier);
+
+			return createProduct(EAN);
 		}else{
 			if(found.getSupplier().getSupplierNumber().equals(supplier.getSupplierNumber())){
 				this.notImportedArticles++;
-				return null;				
+				return null;	
+			} else if(found.getOrderNumberSupplier().equals(EAN)) {
+				this.notImportedArticles++;
+				return null;
 			} else {
-				return createProduct(orderNumberSupplier);
+				System.out.println("Falsch 2");
+				return createProduct(EAN);
 			}
 		}
 	}
@@ -184,7 +195,8 @@ public class ImportParser {
 		//if not found create a new one
 		product = new BOProduct();
 		product.setOrderNumberSupplier(orderNumberSupplier);
-		product.setOrderNumberCustomer(String.format("%s%s", orderNumberSupplier, supplier.getSupplierNumber()));
+		product.setOrderNumberCustomer(orderNumberSupplier);
+//		product.setOrderNumberCustomer(String.format("%s%s", orderNumberSupplier, supplier.getSupplierNumber()));
 		
 		return product;
 	}
