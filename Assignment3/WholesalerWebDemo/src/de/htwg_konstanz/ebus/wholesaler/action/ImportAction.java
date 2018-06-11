@@ -63,6 +63,7 @@ public class ImportAction implements IAction {
 			FileItem fileItem = files.get(0);
 			if (!fileItem.getName().substring(fileItem.getName().length() - 3, fileItem.getName().length())
 					.equals("xml")) {
+				errorList.add("This is not an xml file");
 				message = "NOTXML";
 				return String.format("products.jsp?message=%S", message);
 			}

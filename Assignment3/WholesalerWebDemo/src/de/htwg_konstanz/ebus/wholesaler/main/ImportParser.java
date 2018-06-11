@@ -201,8 +201,11 @@ public class ImportParser {
 			for(BOPurchasePrice purchasePrice : list){
 				//same with sale prices
 				BOSalesPrice sale = new BOSalesPrice();
-				//Customer must pay 2 times of the real price
-				sale.setAmount(purchasePrice.getAmount().multiply(new BigDecimal("2")));
+//				//Customer must pay 2 times of the real price
+//				sale.setAmount(purchasePrice.getAmount().multiply(new BigDecimal("2")));
+				
+				sale.setAmount(purchasePrice.getAmount());
+				
 				sale.setTaxrate(purchasePrice.getTaxrate());
 				sale.setPricetype(purchasePrice.getPricetype());
 				sale.setLowerboundScaledprice(1);
@@ -256,8 +259,9 @@ public class ImportParser {
 	
 					//same with sale prices
 					BOSalesPrice sale = new BOSalesPrice();
-					//Customer must pay 2 times of the real price
-					sale.setAmount(purchasePrice.getAmount().multiply(new BigDecimal("2")));
+//					//Customer must pay 2 times of the real price
+//					sale.setAmount(purchasePrice.getAmount().multiply(new BigDecimal("2")));
+					sale.setAmount(purchasePrice.getAmount());
 					sale.setTaxrate(purchasePrice.getTaxrate());
 					sale.setPricetype(type);
 					sale.setLowerboundScaledprice(1);
