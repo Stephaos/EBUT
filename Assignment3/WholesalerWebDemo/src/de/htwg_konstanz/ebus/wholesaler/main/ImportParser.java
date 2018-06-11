@@ -160,15 +160,19 @@ public class ImportParser {
 	private BOProduct loadOrCreateProduct(Node article, XPath xpath) throws XPathExpressionException{
 
 		//get the aid
-		Node node = (Node) xpath.evaluate("SUPPLIER_AID", article, XPathConstants.NODE);
+		Node node = (Node) xpath.evaluate("*/EAN", article, XPathConstants.NODE);
 		String orderNumberSupplier = node.getFirstChild().getNodeValue();
 		//try to find a existing product
 		BOProduct found = ProductBOA.getInstance().findByOrderNumberSupplier(orderNumberSupplier);
+		
+//		System.out.println("getOrderNumberSupplier: " + found.getOrderNumberSupplier());
+		
+		
 		if(found == null){
 			return createProduct(orderNumberSupplier);
 		}else{
 			if(found.getSupplier().getSupplierNumber().equals(supplier.getSupplierNumber())){
-				this.notImportedArticles ++;
+				this.notImportedArticles++;
 				return null;				
 			} else {
 				return createProduct(orderNumberSupplier);
