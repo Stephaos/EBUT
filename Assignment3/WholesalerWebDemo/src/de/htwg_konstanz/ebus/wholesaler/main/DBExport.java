@@ -44,7 +44,7 @@ public class DBExport {
 	private static final String ARTICLE_LIST = "T_NEW_CATALOG";
 	
 	/** The Constant OUR_NAME. */
-	private static final String OUR_NAME = "HTWG Konstanz Tandem 11";
+	private static final String OUR_NAME = "HTWG Konstanz";
 	
 	/** The Constant SUPPLIER_NAME. */
 	private static final String SUPPLIER_NAME = "SUPPLIER_NAME";

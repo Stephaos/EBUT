@@ -49,10 +49,10 @@ public class ImportAction implements IAction {
 	 */
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response, ArrayList<String> errorList) {
-
+		errorList.clear();
 		String message = "";
 		try {
-			System.out.println("Try");
+
 			List<BOProduct> productList = ProductBOA.getInstance().findAll();
 			request.getSession(true).setAttribute("productList", productList);
 			DiskFileItemFactory factory = new DiskFileItemFactory();
@@ -67,20 +67,23 @@ public class ImportAction implements IAction {
 				return String.format("products.jsp?message=%S", message);
 			}
 			InputStream stream = fileItem.getInputStream();
-			System.out.println("Input Stream");
+
 			// create and configure the factory for DOM
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 			docFactory.setIgnoringElementContentWhitespace(true);
 			docFactory.setIgnoringComments(true);
 			// Read the uploaded file
 			DocumentBuilder builder = docFactory.newDocumentBuilder();
+
 			// validation
 			Document document = builder.parse(stream);
 			if (validator.isValid(document)) {
+
 				stream.close();
-				ImportParser importer = new ImportParser();
+				ImportParser importer = new ImportParser(errorList);
 				message = importer.importToDB(document);
 			} else {
+				errorList.add("NOT VALID XML");
 				message = "NOTVALID";
 				return String.format("products.jsp?message=%S", message);
 			}
@@ -93,6 +96,7 @@ public class ImportAction implements IAction {
 		} catch (ParserConfigurationException e) {
 			e.printStackTrace();
 		} catch (SAXException e) {
+			errorList.add("NOT WELL FORMED XML");
 			message = "NOTWELLFORMED";
 			e.printStackTrace();
 		}

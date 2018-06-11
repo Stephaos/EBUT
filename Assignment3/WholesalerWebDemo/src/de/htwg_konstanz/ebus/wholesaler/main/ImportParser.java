@@ -2,6 +2,7 @@ package de.htwg_konstanz.ebus.wholesaler.main;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.xpath.XPath;
@@ -39,6 +40,20 @@ public class ImportParser {
 	
 	private int notImportedArticles = 0; 
 	private int allArticles = 0;
+	
+	private static ArrayList<String> errorList;
+	
+	
+	/**
+	 * @param doc Valid dom document
+	 * @param errorList
+	 */
+	@SuppressWarnings("static-access")
+	public ImportParser(ArrayList<String> errorList) {
+		this.errorList = errorList;
+
+	}
+	
 	/**
 	 * Import to db.
 	 *
@@ -59,8 +74,10 @@ public class ImportParser {
 				this.allArticles = nodes.getLength();
 				//add them to db
 				addArticles(xpath, nodes);
+				errorList.add("SUCCESSFULLY IMPORTED " + (this.allArticles - this.notImportedArticles) + " FROM " + this.allArticles);
 				return "SUCCESSFULLY IMPORTED " + (this.allArticles - this.notImportedArticles) + " FROM " + this.allArticles;
 			} else {
+				errorList.add("UNKNOWN SUPPLIER");
 				return "UNKNOWNSUPPLIER";
 			}
 		} catch (IOException |  XPathExpressionException e) {
@@ -228,6 +245,7 @@ public class ImportParser {
 					BOCountry boCountry = countryInstance.findCountry(country);
 					//if the country dosent exist 
 					if(boCountry == null){
+						errorList.add(String.format("Country '%s' don´t exist", country));
 						throw new IOException(String.format("Country '%s' don´t exist", country));
 					}
 					purchasePrice.setCountry(boCountry);
@@ -270,7 +288,7 @@ public class ImportParser {
 		//every Detail
 		for (int j = 0; j < details.getLength(); j++) {
 			Node detail = details.item(j);
-			String name = detail.getNodeName();
+
 			//Read descriptions
 			Node desShort = (Node) xpath.evaluate("DESCRIPTION_SHORT", detail, XPathConstants.NODE);
 			product.setShortDescription(desShort.getFirstChild().getNodeValue());
