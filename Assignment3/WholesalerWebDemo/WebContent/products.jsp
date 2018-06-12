@@ -23,6 +23,7 @@
 			v_export.style.display = "none";
 			v_version.style.display = "none";
 			v_format.style.display = "none";
+			document.getElementById("shortdesc").style.display = "none";
 		} else {
 			v_import.style.display = "none";		
 		}
@@ -40,6 +41,8 @@
 		if (value != "Matching Short Description") {
 		    shortdesc.value = "";
 		    shortdesc.style.display = "none";
+		} else {
+			shortdesc.style.display = "block";
 		}
 
 		
