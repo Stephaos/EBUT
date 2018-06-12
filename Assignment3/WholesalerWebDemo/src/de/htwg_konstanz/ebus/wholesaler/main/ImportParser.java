@@ -149,6 +149,39 @@ public class ImportParser {
 		}
 	}
 	
+//	/**
+//	 * Load or create product.
+//	 *
+//	 * @param article the article
+//	 * @param xpath the xpath
+//	 * @return the BO product
+//	 * @throws XPathExpressionException the x path expression exception
+//	 */
+//	private BOProduct loadOrCreateProduct(Node article, XPath xpath) throws XPathExpressionException{
+//
+//		//get the EAN
+//		Node node = (Node) xpath.evaluate("*/EAN", article, XPathConstants.NODE);
+//
+//		String EAN = node.getFirstChild().getNodeValue();
+//		
+//		//try to find a existing product
+//		BOProduct found = ProductBOA.getInstance().findByOrderNumberSupplier(EAN);
+//
+////		System.out.println("EAN 1 " + found.getOrderNumberSupplier());
+////		System.out.println("EAN 2 " + EAN);
+////		
+//		if(found == null){
+//			return createProduct(EAN);
+//		
+//			} else if(found.getOrderNumberSupplier().equals(EAN)) {
+//				this.notImportedArticles++;
+//				return null;
+//			} else {
+//
+//				return createProduct(EAN);
+//			}
+//	}
+	
 	/**
 	 * Load or create product.
 	 *
@@ -158,36 +191,32 @@ public class ImportParser {
 	 * @throws XPathExpressionException the x path expression exception
 	 */
 	private BOProduct loadOrCreateProduct(Node article, XPath xpath) throws XPathExpressionException{
-
-		//get the EAN
-		Node node = (Node) xpath.evaluate("*/EAN", article, XPathConstants.NODE);
-
-		String EAN = node.getFirstChild().getNodeValue();
 		
+		//get the aid
+		Node node = (Node) xpath.evaluate("SUPPLIER_AID", article, XPathConstants.NODE);
+		String orderNumberSupplier = node.getFirstChild().getNodeValue();
 		//try to find a existing product
-		BOProduct found = ProductBOA.getInstance().findByOrderNumberSupplier(EAN);
-
-//		System.out.println("EAN 1 " + found.getOrderNumberSupplier());
-//		System.out.println("EAN 2 " + EAN);
-//		
-		if(found == null){
-			return createProduct(EAN);
+		BOProduct found = ProductBOA.getInstance().findByOrderNumberSupplier(orderNumberSupplier);
 		
-			} else if(found.getOrderNumberSupplier().equals(EAN)) {
-				this.notImportedArticles++;
-				return null;
+		if(found == null){
+			return createProduct(orderNumberSupplier);
+		}else{
+			if(found.getSupplier().getSupplierNumber().equals(supplier.getSupplierNumber())){
+				this.notImportedArticles ++;
+				return null;				
 			} else {
-
-				return createProduct(EAN);
+				return createProduct(orderNumberSupplier);
 			}
+		}
 	}
+	
 	
 	private BOProduct createProduct(String orderNumberSupplier) {
 		//if not found create a new one
 		product = new BOProduct();
 		product.setOrderNumberSupplier(orderNumberSupplier);
-		product.setOrderNumberCustomer(orderNumberSupplier);
-//		product.setOrderNumberCustomer(String.format("%s%s", orderNumberSupplier, supplier.getSupplierNumber()));
+//		product.setOrderNumberCustomer(orderNumberSupplier);
+		product.setOrderNumberCustomer(String.format("%s%s", orderNumberSupplier, supplier.getSupplierNumber()));
 		
 		return product;
 	}
