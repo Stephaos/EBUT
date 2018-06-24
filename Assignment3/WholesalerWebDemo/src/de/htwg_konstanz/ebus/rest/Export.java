@@ -37,8 +37,6 @@ public class Export {
 	@Produces({MediaType.APPLICATION_XML,MediaType.APPLICATION_XHTML_XML})
 	public Response getAll(@HeaderParam("Content-Type") String format)
 	{
-		
-		System.out.print("kommen rein");
 		try {
 			DBExport exporter = new DBExport();
 			Document document = null;
