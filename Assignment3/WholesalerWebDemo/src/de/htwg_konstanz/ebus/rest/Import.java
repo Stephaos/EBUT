@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -23,6 +24,13 @@ public class Import {
 
 	ArrayList<String> errorList;
 	
+	@GET
+	@Produces(MediaType.TEXT_HTML)
+	public String sayHelloWorld() {
+		return "You´ve reached the Import";
+	}
+	
+
 	@POST
 	@Path("/upload") // Path to call method
 	@Consumes(MediaType.APPLICATION_XML)

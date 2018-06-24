@@ -4,7 +4,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
-import javax.ws.rs.*;
+import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
@@ -13,14 +18,19 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Document;
 
-import de.htwg_konstanz.ebus.wholesaler.main.*;
+import de.htwg_konstanz.ebus.wholesaler.main.DBExport;
+import de.htwg_konstanz.ebus.wholesaler.main.XMLTransform;
 
 @Path("/export")
 public class Export {
-	
-	
-	
+
 	ArrayList<String> errorList;
+
+	@GET
+	@Produces(MediaType.TEXT_HTML)
+	public String sayHelloWorld() {
+		return "You´ve reached the Export";
+	}
 	
 	@GET
 	@Path("/all")
@@ -64,7 +74,7 @@ public class Export {
 		return export.getAll(format);
 	}
 	
-	public StreamingOutput getFileStream(InputStream stream) {
+	public StreamingOutput getFileStream(final InputStream stream) {
 		StreamingOutput fileStream =  new StreamingOutput(){
 			@Override
 			public void write(java.io.OutputStream output) throws IOException, WebApplicationException 
