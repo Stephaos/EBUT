@@ -190,7 +190,7 @@ public class RESTClient {
 				String message;
 				File file;
 				System.out.println("Import an unknown supplier");
-				file = new File(RESTClient.files + "/supplier.xml");
+				file = new File(RESTClient.files + "/invalidSupplier.xml");
 				stream = new FileInputStream(file);
 
 				response = this.client.target("http://localhost:8080/WholesalerWebDemo/rest/import/upload")
@@ -234,7 +234,7 @@ public class RESTClient {
 				String message;
 				File file;
 				System.out.println("Import an html-file with valid and well-formed xml, unknown supplier");
-				file = new File(RESTClient.files + "/notxml1.html");
+				file = new File(RESTClient.files + "/validAndWellFormedXML.html");
 				stream = new FileInputStream(file);
 
 				response = this.client.target("http://localhost:8080/WholesalerWebDemo/rest/import/upload")
