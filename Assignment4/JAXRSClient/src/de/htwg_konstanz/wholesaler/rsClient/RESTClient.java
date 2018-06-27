@@ -212,7 +212,7 @@ public class RESTClient {
 				String message;
 				File file;
 				System.out.println("Import a valid HTML file");
-				file = new File(RESTClient.files + "/validHTML.html");
+				file = new File(RESTClient.files + "/validHTML.xhtml");
 				stream = new FileInputStream(file);
 
 				response = this.client.target("http://localhost:8080/WholesalerWebDemo/rest/import/upload")
