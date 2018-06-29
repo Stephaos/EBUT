@@ -37,6 +37,9 @@ public class Export {
 	@Produces({MediaType.APPLICATION_XML,MediaType.APPLICATION_XHTML_XML})
 	public Response getAll(@HeaderParam("Content-Type") String format)
 	{
+
+
+		
 		try {
 			DBExport exporter = new DBExport();
 			Document document = null;
@@ -45,10 +48,53 @@ public class Export {
 			InputStream stream = null;
 			
 			if(format.equals("application/xml")) {
+				
 				stream = transformer.toXML(document);
 			} else if(format.equals("application/xhtml+xml")) {
+				
+
 				stream = transformer.toXHTML(document);
 			} else {	
+
+				return Response.status(500).entity("Wrong Datatype").build();
+			}
+			
+			StreamingOutput fileStream = this.getFileStream(stream);
+
+			ResponseBuilder response = Response.ok(fileStream, MediaType.APPLICATION_OCTET_STREAM);
+			response.header("Content-Disposition", "attachment; filename=\"productcatalog.xml\"");
+			return response.build();
+
+
+		} catch (ParserConfigurationException e) {
+			return Response.status(500).entity(e.getMessage()).build();
+		}
+	}
+	
+	@GET
+	@Path("/short/{desc}")
+	@Produces({MediaType.APPLICATION_XML,MediaType.APPLICATION_XHTML_XML})
+	public Response getShort(@HeaderParam("Content-Type") String format, @PathParam("desc") String desc)
+	{
+
+
+		
+		try {
+			DBExport exporter = new DBExport();
+			Document document = null;
+			document = exporter.readProductsWithDescription(desc);
+			XMLTransform transformer = new XMLTransform();
+			InputStream stream = null;
+			
+			if(format.equals("application/xml")) {
+				
+				stream = transformer.toXML(document);
+			} else if(format.equals("application/xhtml+xml")) {
+				
+
+				stream = transformer.toXHTML(document);
+			} else {	
+
 				return Response.status(500).entity("Wrong Datatype").build();
 			}
 			

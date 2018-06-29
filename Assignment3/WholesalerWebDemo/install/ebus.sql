@@ -1786,7 +1786,8 @@ CREATE TABLE IF NOT EXISTS `customer` (
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
 INSERT INTO `customer` (`customerid`, `companyname`, `firstname`, `lastname`, `remark`, `address`, `ws_user_name`, `ws_password`, `ws_delivery_endpoint`, `ws_invoice_endpoint`) VALUES
 	('10', 'HTWG Konstanz', 'HTWG', 'Konstanz', NULL, '20', 'ws_htwg_1', 'ws_htwg_1', 'http://localhost:8080/eps/DeliveryService', 'http://localhost:8080/eps/InvoiceService'),
-	('11', 'Sportscheck', 'Sporty', 'Sportsman', NULL, '80', 'sportscheck_user_ws', 'sportscheck_user_ws', 'http://localhost:8080/eps/DeliveryService', 'http://localhost:8080/eps/InvoiceService');
+	('11', 'Sportscheck', 'Sporty', 'Sportsman', NULL, '80', 'sportscheck_user_ws', 'sportscheck_user_ws', 'http://localhost:8080/eps/DeliveryService', 'http://localhost:8080/eps/InvoiceService'),
+	('12', 'KN MEDIA STORE', 'MEDIA', 'MEDIA', NULL, '30', 'ws_MEDIA_1', 'ws_MEDIA_1', 'http://localhost:8080/eps/MEDIA', 'http://localhost:8080/eps/MEDIA');
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 
 
