@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -15,6 +16,9 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
+
+import com.sun.jersey.core.header.FormDataContentDisposition;
+
 import de.htwg_konstanz.ebus.framework.wholesaler.api.boa._BaseBOA;
 import de.htwg_konstanz.ebus.wholesaler.main.ImportParser;
 import de.htwg_konstanz.ebus.wholesaler.main.XMLValidation;
@@ -31,11 +35,91 @@ public class Import {
 	}
 	
 
+//	@POST
+//	@Path("/upload") // Path to call method
+//	@Consumes(MediaType.APPLICATION_XML)
+//	@Produces(MediaType.TEXT_PLAIN)
+//	public Response uploadFile(InputStream stream) {
+//		String message;
+//		int status;
+//
+//		message = "error could not upload file";
+//		status = 404;
+//
+//		try {
+//			// create and configure the factory for DOM
+//			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+//			docFactory.setIgnoringElementContentWhitespace(true);
+//			docFactory.setIgnoringComments(true);
+//			// Read the uploaded file
+//			DocumentBuilder builder = docFactory.newDocumentBuilder();
+//			// parse checks for WF
+//			Document document = builder.parse(stream);
+//			XMLValidation validator = new XMLValidation();
+//			if (validator.isValid(document)) {
+//				
+//				ImportParser importer = new ImportParser(errorList);
+//				String importMessage = importer.importToDB(document);
+//				
+//				if(importMessage.equals("UNKNOWNSUPPLIER")) {
+//					_BaseBOA.getInstance().commit();
+//					message = "Unknown Supplier";
+//					return Response.status(500).entity("Unknown Supplier").build();
+//				} else {
+//					String dataImported = importMessage.split(" ")[2];
+//					_BaseBOA.getInstance().commit();
+//					return Response.ok("Successfully imported: "+dataImported+" Nodes").build();
+//				}
+//			} else {
+//				message = "Document is not valid xml";
+//				status = 500;
+//			}
+//		} catch (ParserConfigurationException e) {
+//			message = e.getMessage();
+//			status = 500;
+//			
+//		} catch (SAXException e) {
+//			// Document is not well-formed
+//			message = "Document is not well-formed";
+//			status = 500;
+//		} catch (IOException e) {
+//			// no file given
+//			message = "No file";
+//			status = 500;
+//		}
+//		
+//		// COMMIT!!!!!!
+//	    _BaseBOA.getInstance().commit();
+//
+//		return Response.status(status).entity(message).build();
+//	}
+
+	
+	//............................................................................................
+	//.....AAAAA.......CCCCCCC....HHHH...HHHH..TTTTTTTTTTUUUUU...UUUU..NNNN...NNNN.....GGGGGGG....
+	//.....AAAAA......CCCCCCCCC...HHHH...HHHH..TTTTTTTTTTUUUUU...UUUU..NNNNN..NNNN...GGGGGGGGGG...
+	//....AAAAAA.....CCCCCCCCCCC..HHHH...HHHH..TTTTTTTTTTUUUUU...UUUU..NNNNN..NNNN..GGGGGGGGGGGG..
+	//....AAAAAAA....CCCC...CCCCC.HHHH...HHHH.....TTTT....UUUU...UUUU..NNNNNN.NNNN..GGGGG..GGGGG..
+	//...AAAAAAAA...CCCC.....CCC..HHHH...HHHH.....TTTT....UUUU...UUUU..NNNNNN.NNNN.GGGGG....GGG...
+	//...AAAAAAAA...CCCC..........HHHHHHHHHHH.....TTTT....UUUU...UUUU..NNNNNNNNNNN.GGGG...........
+	//...AAAA.AAAA..CCCC..........HHHHHHHHHHH.....TTTT....UUUU...UUUU..NNNNNNNNNNN.GGGG..GGGGGGG..
+	//..AAAAAAAAAA..CCCC..........HHHHHHHHHHH.....TTTT....UUUU...UUUU..NNNNNNNNNNN.GGGG..GGGGGGG..
+	//..AAAAAAAAAAA.CCCC.....CCC..HHHH...HHHH.....TTTT....UUUU...UUUU..NNNNNNNNNNN.GGGGG.GGGGGGG..
+	//..AAAAAAAAAAA..CCCC...CCCCC.HHHH...HHHH.....TTTT....UUUU...UUUU..NNNN.NNNNNN..GGGGG....GGG..
+	//.AAAA....AAAA..CCCCCCCCCCC..HHHH...HHHH.....TTTT....UUUUUUUUUUU..NNNN..NNNNN..GGGGGGGGGGGG..
+	//.AAAA.....AAAA..CCCCCCCCCC..HHHH...HHHH.....TTTT.....UUUUUUUUU...NNNN..NNNNN...GGGGGGGGGG...
+	//.AAAA.....AAAA...CCCCCCC....HHHH...HHHH.....TTTT......UUUUUUU....NNNN...NNNN.....GGGGGGG....
+	//............................................................................................
+	// Anscheinend unterstützt JAX RS Kein Multipart
+	// KANNST OBEN WIEDER EINKOMMENTIEREN ODER HIER WEITER PROBIEREN
+	// IM RESTCLIENT MUSST NOCH DIE BMCAT DEMO MEDIA STORE EINKOMENTIEREN UM AUF DEN NORMALEN STAND ZU KOMMEN
 	@POST
 	@Path("/upload") // Path to call method
-	@Consumes(MediaType.APPLICATION_XML)
-	@Produces(MediaType.TEXT_PLAIN)
-	public Response uploadFile(InputStream stream) {
+	@Consumes(MediaType.MULTIPART_FORM_DATA)
+	 public Response uploadFile(
+	  @FormParam("file") InputStream uploadedInputStream,
+	  @FormParam("file") FormDataContentDisposition fileDetail) {
+	 
 		String message;
 		int status;
 
@@ -50,7 +134,7 @@ public class Import {
 			// Read the uploaded file
 			DocumentBuilder builder = docFactory.newDocumentBuilder();
 			// parse checks for WF
-			Document document = builder.parse(stream);
+			Document document = builder.parse(uploadedInputStream);
 			XMLValidation validator = new XMLValidation();
 			if (validator.isValid(document)) {
 				
@@ -59,6 +143,7 @@ public class Import {
 				
 				if(importMessage.equals("UNKNOWNSUPPLIER")) {
 					_BaseBOA.getInstance().commit();
+					message = "Unknown Supplier";
 					return Response.status(500).entity("Unknown Supplier").build();
 				} else {
 					String dataImported = importMessage.split(" ")[2];
@@ -88,5 +173,5 @@ public class Import {
 
 		return Response.status(status).entity(message).build();
 	}
-
+	
 }

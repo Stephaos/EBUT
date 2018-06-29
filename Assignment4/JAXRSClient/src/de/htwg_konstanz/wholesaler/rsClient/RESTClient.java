@@ -13,6 +13,7 @@ import java.io.OutputStream;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -50,6 +51,8 @@ public class RESTClient {
 //	}
 
 		
+//		public static final String files = "/Volumes/Storage/HTWG Konstanz/8.Semester/E-Business Technologien/EBUT/Assignment4/JAXRSClient/files";
+
 		public static final String files = "C:/Users/Steph/eclipse-workspace/EBUT/Assignment4/JAXRSClient/files";
 	
 		private Client client;
@@ -90,10 +93,10 @@ public class RESTClient {
 						System.out.println("What do you want to do? \n"
 								+ "1) ImportInvalidXML\n"
 								+ "2) ImportNotWellFormedXML\n"
-								+ "3) ImportHtmlFileWithValidAndWellFormedXML\n"
-								+ "4) ImportValidHtmlFile\n"
-								+ "5) ImportUnknownSupplier\n"
-								+ "6) ImportValidAndWellFormedXML\n");
+								+ "3) ImportUnknownSupplier\n"
+								+ "4) sample_articles_kn_media_store.xml\n"
+								+ "5) ImportValidAndWellFormedXML\n");
+
 						
 						input = Integer.parseInt(br.readLine());
 					} catch (IOException e) {
@@ -106,8 +109,10 @@ public class RESTClient {
 					System.out.println("You´ve chosen the Export");
 					try {
 						System.out.println("What do you want to do next? \n"
-								+ "1) ExportAllXHTML\n"
-								+ "2) ExportAllXML\n");
+								+ "1) ExportAllXML\n"
+								+ "2) ExportAllXHTML\n"
+								+ "3) ExportShortDescriptionXML\n"
+								+ "4) ExportShortDescriptionXHTML\n");
 
 						input = Integer.parseInt(br.readLine());
 					} catch (IOException e) {
@@ -136,15 +141,12 @@ public class RESTClient {
 				ImportNotWellFormedXML();
 				break;
 			case 3:
-				ImportHtmlFileWithValidAndWellFormedXML();
-				break;
-			case 4:
-				ImportValidHtmlFile();
-				break;
-			case 5:
 				ImportUnknownSupplier();
 				break;
-			case 6:
+			case 4:
+				ImportSampleMediaStore();
+				break;
+			case 5:
 				ImportValidAndWellFormedXML();	
 				break;
 			}
@@ -158,6 +160,12 @@ public class RESTClient {
 				break;
 			case 2:
 				ExportAllXHTML();
+				break;
+			case 3:
+				ExportShortDescXML();
+				break;
+			case 4:
+				ExportShortDescXHTML();
 				break;
 			}
 		}
@@ -183,6 +191,53 @@ public class RESTClient {
 			}
 		}
 
+//		private void ImportSampleMediaStore(){
+//			try {
+//				InputStream stream;
+//				String message;
+//				File file;
+//				System.out.println("Import a valid and well-formed xml-file (ImportSampleMediaStore)");
+//				file = new File(RESTClient.files + "/sample_articles_kn_media_store.xml");
+//				stream = new FileInputStream(file);
+//
+//				Response valid = this.client.target("http://localhost:8080/WholesalerWebDemo/rest/import/upload")
+//						.request(MediaType.TEXT_PLAIN).header("filename", file.getName()).post(Entity.xml(stream));
+//
+//				message = valid.readEntity(String.class);
+//				System.out.println(message + "\n");
+//				
+//				Thread.sleep(5000);
+//			} catch (Exception e) {
+//				System.err.println();
+//			}
+//		}
+		
+			private void ImportSampleMediaStore(){
+				
+				
+				
+				try {
+					
+					InputStream stream;
+					String message;
+					File file;
+					System.out.println("Import a valid and well-formed xml-file (ImportSampleMediaStore)");
+					file = new File(RESTClient.files + "/sample_articles_kn_media_store.xml");
+					stream = new FileInputStream(file);
+
+					Response valid = this.client.target("http://localhost:8080/WholesalerWebDemo/rest/import/upload")
+							.request(MediaType.TEXT_PLAIN).header("filename", file.getName()).post(Entity.xml(stream));
+
+					message = valid.readEntity(String.class);
+					System.out.println(message + "\n");
+					
+					Thread.sleep(5000);
+				} catch (Exception e) {
+					System.err.println();
+				}
+			}
+			
+			
 		private void ImportUnknownSupplier(){
 			try {
 				InputStream stream;
@@ -205,49 +260,49 @@ public class RESTClient {
 			}
 		}
 
-		private void ImportValidHtmlFile(){
-			try {
-				InputStream stream;
-				Response response;
-				String message;
-				File file;
-				System.out.println("Import a valid HTML file");
-				file = new File(RESTClient.files + "/validHTML.xhtml");
-				stream = new FileInputStream(file);
+//		private void ImportValidHtmlFile(){
+//			try {
+//				InputStream stream;
+//				Response response;
+//				String message;
+//				File file;
+//				System.out.println("Import a valid HTML file");
+//				file = new File(RESTClient.files + "/validHTML.xhtml");
+//				stream = new FileInputStream(file);
+//
+//				response = this.client.target("http://localhost:8080/WholesalerWebDemo/rest/import/upload")
+//						.request(MediaType.TEXT_PLAIN).header("filename", file.getName()).post(Entity.xml(stream));
+//
+//				message = response.readEntity(String.class);
+//				System.out.println(message + "\n");
+//
+//				Thread.sleep(5000);
+//			} catch (Exception e) {
+//				System.err.println();
+//			}
+//		}
 
-				response = this.client.target("http://localhost:8080/WholesalerWebDemo/rest/import/upload")
-						.request(MediaType.TEXT_PLAIN).header("filename", file.getName()).post(Entity.xml(stream));
-
-				message = response.readEntity(String.class);
-				System.out.println(message + "\n");
-
-				Thread.sleep(5000);
-			} catch (Exception e) {
-				System.err.println();
-			}
-		}
-
-		private void ImportHtmlFileWithValidAndWellFormedXML(){
-			try {
-				InputStream stream;
-				Response response;
-				String message;
-				File file;
-				System.out.println("Import an html-file with valid and well-formed xml, unknown supplier");
-				file = new File(RESTClient.files + "/validAndWellFormedXML.html");
-				stream = new FileInputStream(file);
-
-				response = this.client.target("http://localhost:8080/WholesalerWebDemo/rest/import/upload")
-						.request(MediaType.TEXT_PLAIN).header("filename", file.getName()).post(Entity.xml(stream));
-
-				message = response.readEntity(String.class);
-				System.out.println(message + "\n");
-
-				Thread.sleep(5000);
-			} catch (Exception e) {
-				System.err.println();
-			}
-		}
+//		private void ImportHtmlFileWithValidAndWellFormedXML(){
+//			try {
+//				InputStream stream;
+//				Response response;
+//				String message;
+//				File file;
+//				System.out.println("Import an html-file with valid and well-formed xml, unknown supplier");
+//				file = new File(RESTClient.files + "/validAndWellFormedXML.html");
+//				stream = new FileInputStream(file);
+//
+//				response = this.client.target("http://localhost:8080/WholesalerWebDemo/rest/import/upload")
+//						.request(MediaType.TEXT_PLAIN).header("filename", file.getName()).post(Entity.xml(stream));
+//
+//				message = response.readEntity(String.class);
+//				System.out.println(message + "\n");
+//
+//				Thread.sleep(5000);
+//			} catch (Exception e) {
+//				System.err.println();
+//			}
+//		}
 
 		private void ImportNotWellFormedXML(){
 			try {
@@ -320,6 +375,68 @@ public class RESTClient {
 					.get(InputStream.class);
 
 			if (this.writeFile("allXML.xml", xmlAll)) {
+				System.out.println("Data saved");
+			} else {
+				System.out.println("Data not saved!");
+			}
+
+			try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		private void ExportShortDescXML() {
+			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+			String input = "";
+			try {
+				System.out.print("Short description:");
+				 input = br.readLine();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			System.out.println("Export all data with short description " + input + " in XML");
+
+			InputStream xmlShortDesc = this.client.target("http://localhost:8080/WholesalerWebDemo/rest/export/short/"+input)
+					.request(MediaType.APPLICATION_XML).header("Content-Type", MediaType.APPLICATION_XML)
+					.get(InputStream.class);
+
+			if (this.writeFile("shortDescXML.xml", xmlShortDesc)) {
+				System.out.println("Data saved");
+			} else {
+				System.out.println("Data not saved!");
+			}
+
+			try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		private void ExportShortDescXHTML() {
+			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+			String input = "";
+			try {
+				System.out.print("Short description:");
+				 input = br.readLine();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			System.out.println("Export all Data with short description " + input + " in XHTML");
+
+			InputStream xmlShortDesc = this.client.target("http://localhost:8080/WholesalerWebDemo/rest/export/short/"+input)
+					.request(MediaType.APPLICATION_XHTML_XML).header("Content-Type", MediaType.APPLICATION_XHTML_XML)
+					.get(InputStream.class);
+
+			if (this.writeFile("shortDescXHTML.xml", xmlShortDesc)) {
 				System.out.println("Data saved");
 			} else {
 				System.out.println("Data not saved!");

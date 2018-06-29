@@ -68,6 +68,9 @@ public class Constants
 	public static final int USER_CUSTOMER = 2;
 	public static final int USER_SUPPLIER = 3;
 	
+//	public static final String XSLT_Path = "/Volumes/Storage/HTWG Konstanz/8.Semester/E-Business Technologien/EBUT/Assignment3/WholesalerWebDemo/files/ArticlesToXHTML.xslt";
+//	public static final String XSD_Path =  "/Volumes/Storage/HTWG Konstanz/8.Semester/E-Business Technologien/EBUT/Assignment3/WholesalerWebDemo/files/bmecat_new_catalog_1_2_simple_without_NS.xsd";
+	
 	public static final String XSLT_Path = "C:/Users/Steph/eclipse-workspace/EBUT/Assignment3/WholesalerWebDemo/files/ArticlesToXHTML.xslt";
 	public static final String XSD_Path =  "C:/Users/Steph/eclipse-workspace/EBUT/Assignment3/WholesalerWebDemo/files/bmecat_new_catalog_1_2_simple_without_NS.xsd";
 	
