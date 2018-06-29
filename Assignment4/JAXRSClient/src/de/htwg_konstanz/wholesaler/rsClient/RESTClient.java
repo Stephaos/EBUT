@@ -50,8 +50,8 @@ public class RESTClient {
 //	}
 
 		
-		public static final String files = "/Volumes/Storage/HTWG Konstanz/8.Semester/E-Business Technologien/EBUT/Assignment4/JAXRSClient/files";
-
+		public static final String files = "C:/Users/Steph/eclipse-workspace/EBUT/Assignment4/JAXRSClient/files";
+	
 		private Client client;
 		private String target;
 
