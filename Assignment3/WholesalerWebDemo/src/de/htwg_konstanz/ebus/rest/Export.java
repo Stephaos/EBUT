@@ -45,15 +45,14 @@ public class Export {
 			InputStream stream = null;
 			
 			if(format.equals("application/xml")) {
-				
 				stream = transformer.toXML(document);
-			} else if(format.equals("application/xhtml+xml")) {
 				
-
+			} else if(format.equals("application/xhtml+xml")) {
 				stream = transformer.toXHTML(document);
-			} else {	
-
+				
+			} else {
 				return Response.status(500).entity("Wrong Datatype").build();
+				
 			}
 			
 			StreamingOutput fileStream = this.getFileStream(stream);

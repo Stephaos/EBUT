@@ -164,7 +164,7 @@ public class RESTClient {
 	private void ExportAllXHTML() {
 		System.out.println("Export all XHTML-Data");	
 
-		InputStream xhtmlAll = this.client.target("http://localhost:8080/WholesalerWebDemo/rest/export/all/xhtml")
+		InputStream xhtmlAll = this.client.target("http://localhost:8080/WholesalerWebDemo/rest/export/all")
 				.request(MediaType.APPLICATION_XHTML_XML).header("Content-Type", MediaType.APPLICATION_XHTML_XML)
 				.get(InputStream.class);
 
