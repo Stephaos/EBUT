@@ -18,39 +18,6 @@ import javax.ws.rs.core.Response;
 
 public class RESTClient {
 
-/*
-	public static void main(String[] args) {
-		
-		Client client = ClientBuilder.newClient();
-		
-		// Trivial get
-		String request = "Give me this text back";
-		Response res = client.target("http://localhost:8080/WholesalerWebDemo/rest/hello/"+request)
-				.request(MediaType.TEXT_PLAIN)
-				.get();
-		
-		String response = res.readEntity(String.class);
-		System.out.println(response);
-		
-		// Easy get
-		int num = 2;
-		Response res2 = client.target("http://localhost:8080/WholesalerWebDemo/rest/hello/square/"+num)
-				.request(MediaType.TEXT_PLAIN)
-				.get();
-		
-		String response2 = res2.readEntity(String.class);
-		System.out.println(response2);
-		
-		// Easy post		
-		Response res3 = client.target("http://localhost:8080/WholesalerWebDemo/rest/hello/squareroot")
-				.request(MediaType.TEXT_PLAIN)
-				.post(Entity.entity(25, MediaType.TEXT_PLAIN));
-		String response3 = res3.readEntity(String.class);
-		System.out.println(response3);
-
-	}
-*/
-		
 	public static final String files = "/Volumes/Storage/files";
 
 //	public static final String files = "C:/Users/Steph/eclipse-workspace/EBUT/Assignment4/JAXRSClient/files";
@@ -134,19 +101,24 @@ public class RESTClient {
 	public void doImport(int selection) {
 		switch (selection) {
 		case 1:
-			ImportInvalidXML();
+			System.out.println("Import an invalid XML file");
+			Import("invalid.xml");
 			break;
 		case 2:
-			ImportNotWellFormedXML();
+			System.out.println("Import a not well-formed XML file");
+			Import("notWellFormed.xml");
 			break;
 		case 3:
-			ImportUnknownSupplier();
+			System.out.println("Import an unknown supplier");
+			Import("invalidSupplier.xml");
 			break;
 		case 4:
-			ImportSampleMediaStore();
+			System.out.println("Import a valid and well-formed xml-file (ImportSampleMediaStore)");
+			Import("sample_articles_kn_media_store.xml");
 			break;
 		case 5:
-			ImportValidAndWellFormedXML();	
+			System.out.println("Import a valid and well-formed xml-file");
+			Import("valid.xml");	
 			break;
 		}
 	}
@@ -168,101 +140,14 @@ public class RESTClient {
 			break;
 		}
 	}
-
-	private void ImportValidAndWellFormedXML(){
-		try {
-			InputStream stream;
-			String message;
-			File file;
-			System.out.println("Import a valid and well-formed xml-file");
-			file = new File(RESTClient.files + "/valid.xml");
-			stream = new FileInputStream(file);
-
-			Response valid = this.client.target("http://localhost:8080/WholesalerWebDemo/rest/import/upload")
-					.request(MediaType.TEXT_PLAIN).header("filename", file.getName()).post(Entity.xml(stream));
-
-			message = valid.readEntity(String.class);
-			System.out.println(message + "\n");
-			
-			Thread.sleep(5000);
-		} catch (Exception e) {
-			System.err.println();
-		}
-	}
-
-		private void ImportSampleMediaStore(){
-			try {
-				InputStream stream;
-				String message;
-				File file;
-				System.out.println("Import a valid and well-formed xml-file (ImportSampleMediaStore)");
-				file = new File(RESTClient.files + "/sample_articles_kn_media_store.xml");
-				stream = new FileInputStream(file);
-
-				Response valid = this.client.target("http://localhost:8080/WholesalerWebDemo/rest/import/upload")
-						.request(MediaType.TEXT_PLAIN).header("filename", file.getName()).post(Entity.xml(stream));
-
-				message = valid.readEntity(String.class);
-				System.out.println(message + "\n");
-				
-				Thread.sleep(5000);
-			} catch (Exception e) {
-				System.err.println();
-			}
-		}
-		
-	private void ImportUnknownSupplier(){
+	
+	private void Import(String fileName){
 		try {
 			InputStream stream;
 			Response response;
 			String message;
 			File file;
-			System.out.println("Import an unknown supplier");
-			file = new File(RESTClient.files + "/invalidSupplier.xml");
-			stream = new FileInputStream(file);
-
-			response = this.client.target("http://localhost:8080/WholesalerWebDemo/rest/import/upload")
-					.request(MediaType.TEXT_PLAIN).header("filename", file.getName()).post(Entity.xml(stream));
-
-			message = response.readEntity(String.class);
-			System.out.println(message + "\n");
-
-			Thread.sleep(5000);
-		} catch (Exception e) {
-			System.err.println();
-		}
-	}
-
-	private void ImportNotWellFormedXML(){
-		try {
-			InputStream stream;
-			Response response;
-			String message;
-			File file;
-			System.out.println("Import a not well-formed XML file");
-			file = new File(RESTClient.files + "/notWellFormed.xml");
-			stream = new FileInputStream(file);
-
-			response = this.client.target("http://localhost:8080/WholesalerWebDemo/rest/import/upload")
-					.request(MediaType.TEXT_PLAIN).header("filename", file.getName()).post(Entity.xml(stream));
-
-			message = response.readEntity(String.class);
-			System.out.println(message + "\n");
-
-			Thread.sleep(5000);
-		} catch (Exception e) {
-			System.err.println();
-		}
-	}
-
-	private void ImportInvalidXML(){
-		try {
-			InputStream stream;
-			Response response;
-			String message;
-			File file;
-			System.out.println("Import an invalid XML file");
-			file = new File(RESTClient.files + "/invalid.xml");
+			file = new File(RESTClient.files + "/" + fileName);
 			stream = new FileInputStream(file);
 
 			response = this.client.target("http://localhost:8080/WholesalerWebDemo/rest/import/upload")
@@ -275,7 +160,7 @@ public class RESTClient {
 			System.err.println();
 		}
 	}
-
+	
 	private void ExportAllXHTML() {
 		System.out.println("Export all XHTML-Data");	
 
