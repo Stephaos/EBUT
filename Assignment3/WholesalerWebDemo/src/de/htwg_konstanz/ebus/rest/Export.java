@@ -36,10 +36,7 @@ public class Export {
 	@Path("/all")
 	@Produces({MediaType.APPLICATION_XML,MediaType.APPLICATION_XHTML_XML})
 	public Response getAll(@HeaderParam("Content-Type") String format)
-	{
-
-
-		
+	{		
 		try {
 			DBExport exporter = new DBExport();
 			Document document = null;
@@ -76,9 +73,6 @@ public class Export {
 	@Produces({MediaType.APPLICATION_XML,MediaType.APPLICATION_XHTML_XML})
 	public Response getShort(@HeaderParam("Content-Type") String format, @PathParam("desc") String desc)
 	{
-
-
-		
 		try {
 			DBExport exporter = new DBExport();
 			Document document = null;

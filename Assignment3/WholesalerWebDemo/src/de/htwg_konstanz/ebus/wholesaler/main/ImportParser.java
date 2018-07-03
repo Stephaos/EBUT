@@ -41,7 +41,7 @@ public class ImportParser {
 	private int notImportedArticles = 0; 
 	private int allArticles = 0;
 	
-	private static ArrayList<String> errorList;
+	private static ArrayList<String> errorList = new ArrayList<>();
 	
 	
 	/**
@@ -74,10 +74,10 @@ public class ImportParser {
 				this.allArticles = nodes.getLength();
 				//add them to db
 				addArticles(xpath, nodes);
-				errorList.add("SUCCESSFULLY IMPORTED " + (this.allArticles - this.notImportedArticles) + " FROM " + this.allArticles);
+//				errorList.add("SUCCESSFULLY IMPORTED " + (this.allArticles - this.notImportedArticles) + " FROM " + this.allArticles);
 				return "SUCCESSFULLY IMPORTED " + (this.allArticles - this.notImportedArticles) + " FROM " + this.allArticles;
 			} else {
-				errorList.add("UNKNOWN SUPPLIER");
+//				errorList.add("UNKNOWN SUPPLIER");
 				return "UNKNOWNSUPPLIER";
 			}
 		} catch (IOException |  XPathExpressionException e) {
@@ -148,39 +148,6 @@ public class ImportParser {
 			}
 		}
 	}
-	
-//	/**
-//	 * Load or create product.
-//	 *
-//	 * @param article the article
-//	 * @param xpath the xpath
-//	 * @return the BO product
-//	 * @throws XPathExpressionException the x path expression exception
-//	 */
-//	private BOProduct loadOrCreateProduct(Node article, XPath xpath) throws XPathExpressionException{
-//
-//		//get the EAN
-//		Node node = (Node) xpath.evaluate("*/EAN", article, XPathConstants.NODE);
-//
-//		String EAN = node.getFirstChild().getNodeValue();
-//		
-//		//try to find a existing product
-//		BOProduct found = ProductBOA.getInstance().findByOrderNumberSupplier(EAN);
-//
-////		System.out.println("EAN 1 " + found.getOrderNumberSupplier());
-////		System.out.println("EAN 2 " + EAN);
-////		
-//		if(found == null){
-//			return createProduct(EAN);
-//		
-//			} else if(found.getOrderNumberSupplier().equals(EAN)) {
-//				this.notImportedArticles++;
-//				return null;
-//			} else {
-//
-//				return createProduct(EAN);
-//			}
-//	}
 	
 	/**
 	 * Load or create product.
@@ -281,8 +248,8 @@ public class ImportParser {
 					BOCountry boCountry = countryInstance.findCountry(country);
 					//if the country dosent exist 
 					if(boCountry == null){
-						errorList.add(String.format("Country '%s' don´t exist", country));
-						throw new IOException(String.format("Country '%s' don´t exist", country));
+						errorList.add(String.format("Country '%s' donï¿½t exist", country));
+						throw new IOException(String.format("Country '%s' donï¿½t exist", country));
 					}
 					purchasePrice.setCountry(boCountry);
 	
