@@ -1,7 +1,7 @@
 allXML.xml
-allxHTML.xml
+allxHTML.xhtml
 shortDescXML.xml
-shortDescXHTML.xml
+shortDescXHTML.xhtml
 
 # Eclipse
 .classpath

@@ -168,7 +168,7 @@ public class RESTClient {
 				.request(MediaType.APPLICATION_XHTML_XML).header("Content-Type", MediaType.APPLICATION_XHTML_XML)
 				.get(InputStream.class);
 
-		if (this.writeFile("allxHTML.xml", xhtmlAll)) {
+		if (this.writeFile("allxHTML.xhtml", xhtmlAll)) {
 			System.out.println("Data saved!");
 		} else {
 			System.out.println("Data not saved!");
@@ -251,7 +251,7 @@ public class RESTClient {
 				.request(MediaType.APPLICATION_XHTML_XML).header("Content-Type", MediaType.APPLICATION_XHTML_XML)
 				.get(InputStream.class);
 
-		if (this.writeFile("shortDescXHTML.xml", xmlShortDesc)) {
+		if (this.writeFile("shortDescXHTML.xhtml", xmlShortDesc)) {
 			System.out.println("Data saved");
 		} else {
 			System.out.println("Data not saved!");
